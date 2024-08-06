@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TreeRepository extends CrudRepository<Tree, Long>  {
-    public Tree findByTree(String tree);
+    Tree findByValue(int value);
 }

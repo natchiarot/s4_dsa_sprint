@@ -1,12 +1,14 @@
 package com.keyin.dsa.tree;
 
+import com.keyin.dsa.BST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class TreeService {
+public class TreeService { ;
+
     @Autowired
     private TreeRepository treeRepository;
 
@@ -31,7 +33,9 @@ public class TreeService {
     public Tree updateTree(Integer index, Tree updatedTree) {
         Tree treeToUpdate = getTree(index);
 
-        treeToUpdate.setTree(updatedTree.getTree());
+        treeToUpdate.setValue(updatedTree.getValue());
+        treeToUpdate.setLeft(updatedTree.getLeft());
+        treeToUpdate.setRight(updatedTree.getRight());
 
         return treeRepository.save(treeToUpdate);
     }
@@ -40,7 +44,7 @@ public class TreeService {
         treeRepository.delete(getTree(index));
     }
 
-    public Tree findByTree(String tree) {
-        return treeRepository.findByTree(tree);
+    public Tree findByValue(int value) {
+        return treeRepository.findByValue(value);
     }
 }
