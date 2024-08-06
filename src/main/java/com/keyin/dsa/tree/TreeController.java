@@ -13,8 +13,8 @@ public class TreeController {
     private TreeService treeService;
 
     @GetMapping("search_tree")
-    public Tree searchTree(@RequestParam(value = "userName", required = false) String tree) {
-        return treeService.findByTree(tree);
+    public Tree searchTree(@RequestParam(value = "value", required = false) int value) {
+        return treeService.findByValue(value);
     }
 
     @GetMapping("trees")

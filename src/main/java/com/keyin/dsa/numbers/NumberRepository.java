@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface NumbersRepository extends CrudRepository<Numbers, Long>  {
-    public List<Numbers> findByRootAndNumbers(int root, String numbers);
+public interface NumberRepository extends CrudRepository<Number, Long>  {
+    public List<Number> findByNumberInput(String numberInput);
 }
