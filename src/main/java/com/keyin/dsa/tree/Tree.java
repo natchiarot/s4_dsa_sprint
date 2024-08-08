@@ -16,6 +16,10 @@ public class Tree {
     @OneToOne(cascade = CascadeType.ALL)
     private Tree right;
 
+    public Tree() {
+
+    }
+
     public Tree(int value) {
         this.value = value;
         this.left = null;

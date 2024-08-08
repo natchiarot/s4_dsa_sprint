@@ -1,11 +1,13 @@
 package com.keyin.dsa.numbers;
 
+import com.keyin.dsa.BST;
 import com.keyin.dsa.tree.Tree;
 import com.keyin.dsa.tree.TreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.TransferQueue;
 
 @Service
 public class NumberService {
@@ -26,7 +28,36 @@ public class NumberService {
     }
 
     public Number createNumber(Number newNumber) {
+        BST tree = createTree(newNumber.getNumberInput());
+        Tree root = convertBSTToTree(tree.getRoot());
+        treeRepository.save(root);
+        newNumber.setRoot(root);
+
         return numberRepository.save(newNumber);
+    }
+
+    public static BST createTree(String strValue) {
+        String[] spl = strValue.split(" ");
+        BST tree = new BST();
+        for (String s : spl) {
+            Integer value = Integer.parseInt(s);
+            tree.insert(value);
+        }
+        return tree;
+    }
+
+    private Tree convertBSTToTree(Tree numberInput) {
+        if(numberInput == null) {
+            return null;
+        }
+
+        Tree treeNode = new Tree();
+        treeNode.setValue(numberInput.getValue());
+
+        treeNode.setLeft(convertBSTToTree(numberInput.getLeft()));
+        treeNode.setRight(convertBSTToTree(numberInput.getRight()));
+
+        return treeNode;
     }
 
     public List<Number> getAllNumbers() {
