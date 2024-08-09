@@ -1,9 +1,13 @@
 package com.keyin.dsa.numbers;
-
+import lombok.*;
 import com.keyin.dsa.tree.Tree;
 import jakarta.persistence.*;
 
 @Entity
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Number {
     @Id
     @SequenceGenerator(name = "numbers_sequence", sequenceName = "numbers_sequence", allocationSize = 1, initialValue=1)
@@ -13,28 +17,7 @@ public class Number {
     @OneToOne(cascade = CascadeType.ALL)
     private Tree root;
 
-    // Getters and setters
-    public long getNumberId() {
-        return numberId;
-    }
-
-    public void setNumberId(long numberId) {
-        this.numberId = numberId;
-    }
-
-    public String getNumberInput() {
-        return numberInput;
-    }
-
-    public void setNumberInput(String numberInput) {
+    public Number(String numberInput) {
         this.numberInput = numberInput;
-    }
-
-    public Tree getRoot() {
-        return root;
-    }
-
-    public void setRoot(Tree root) {
-        this.root = root;
     }
 }
