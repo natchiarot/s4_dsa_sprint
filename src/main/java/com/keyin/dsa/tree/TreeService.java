@@ -1,6 +1,5 @@
 package com.keyin.dsa.tree;
 
-import com.keyin.dsa.BST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
